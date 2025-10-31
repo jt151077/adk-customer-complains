@@ -15,15 +15,12 @@
 import io
 import vertexai
 import os
+import asyncio
 from google import genai
 from google.genai import types
 
 from google.adk.tools.tool_context import ToolContext
 from google.genai.types import GenerateContentConfig, Part as part2
-
-from PIL import Image
-from io import BytesIO
-import base64
 
 from google.cloud import storage
 from vertexai.generative_models import GenerativeModel, Part
