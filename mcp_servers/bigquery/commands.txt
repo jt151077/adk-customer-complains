@@ -1,0 +1,26 @@
+gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com iam.googleapis.com secretmanager.googleapis.com
+
+gcloud iam service-accounts create toolbox-cc-sa
+
+gcloud projects add-iam-policy-binding jeremy-gemini-ent \
+    --member serviceAccount:toolbox-cc-sa@jeremy-gemini-ent.iam.gserviceaccount.com \
+    --role roles/secretmanager.secretAccessor
+gcloud projects add-iam-policy-binding jeremy-gemini-ent \
+    --member serviceAccount:toolbox-cc-sa@jeremy-gemini-ent.iam.gserviceaccount.com \
+    --role roles/bigquery.admin
+
+
+gcloud secrets create tools --data-file=bigquery.yaml
+(for update: gcloud secrets versions add tools --data-file=bigquery.yaml)
+
+
+export IMAGE=us-central1-docker.pkg.dev/database-toolbox/toolbox/toolbox:latest
+
+
+gcloud run deploy toolbox \
+    --image $IMAGE \
+    --service-account toolbox-cc-sa \
+    --region us-central1 \
+    --set-secrets "/app/bigquery.yaml=tools:latest" \
+    --args="--tools-file=/app/bigquery.yaml","--address=0.0.0.0","--port=8080"
+    --allow-unauthenticated # https://cloud.google.com/run/docs/authenticating/public#gcloud

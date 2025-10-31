@@ -1,0 +1,60 @@
+sources:
+  my-bq-source:
+    kind: bigquery
+    project: jeremy-ifdavsb1
+
+tools:
+  product_retrieval_bq:
+    kind: bigquery-sql
+    description: |
+      Use this tool to get information on customer orders, based on two parameters, the order ID and the product name.
+    parameters:
+      - name: order_id
+        type: string
+        description: The order_id supplied by the user.
+      - name: product_name
+        type: string
+        description: The product_name supplied by the user.
+    statement: |
+      SELECT 
+        o.order_id, 
+        o.customer_id,
+        oi.quantity, 
+        p.product_name, 
+        p.product_id    
+      FROM 
+        `jeremy-ifdavsb1`.`customer_complains`.`Orders` AS o
+      LEFT JOIN 
+        `jeremy-ifdavsb1`.`customer_complains`.`Order_Items` AS oi ON o.order_id = oi.order_id
+      LEFT JOIN 
+        `jeremy-ifdavsb1`.`customer_complains`.`Products` AS p ON oi.product_id = p.product_id
+      WHERE o.order_id = @order_id AND lower(p.product_name) LIKE lower(concat('%', @product_name, '%'));
+    source: my-bq-source
+    
+  insert_voucher_bq:
+    kind: bigquery-sql
+    description: |
+      Use this tool to insert the voucher information to bigquery.
+    parameters:
+     - name: voucher_id
+       type: string
+       description: generated voucher id
+     - name: customer_id
+       type: string
+       description: The customer_id supplied by the user.
+     - name: order_id
+       type: string 
+       description: The order_id supplied by the user.
+     - name: total_amount
+       type: string
+       description: The value of the voucher.
+    statement: |
+      INSERT INTO `jeremy-ifdavsb1`.`customer_complains`.`Vouchers` (voucher_id, customer_id, order_id, total_amount) VALUES (@voucher_id, @customer_id , @order_id , @total_amount);
+    source: my-bq-source
+
+
+toolsets:
+  my_bq_toolset:
+  - product_retrieval_bq
+  - insert_voucher_bq
+  
