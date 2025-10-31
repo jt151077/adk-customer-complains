@@ -14,8 +14,6 @@ Simple example of a custom Agent developed with ADK and published in GeminiEntre
 
 1. Make sure your GCP project is registered and supports GeminiEntreprise. To verfiy, you should have the possibility of creating an GeminiEntreprise AI Application in GCP
 
-![](imgs/img0.png)
-
 
 
 ## Install
@@ -47,23 +45,24 @@ adk web
 
 This will start a webserver running on http://127.0.0.1:8000. By pointing your webbrowser to this address, you can test the code. Below is an example by submitting `1977` as a year:
 
-![](imgs/img4.png)
-
-![](imgs/img5.png)
-
 
 4. You can also test the Agent from the command line and/or deploy it via the following commands:
 
 ```shell
 uv run customer_complain/test_local.py
-uv run deployment/agent_engine/deploy.py
+
+adk deploy agent_engine \
+    --project=jeremy-ifdavsb1 \
+    --region=us-central1 \
+    --staging_bucket=gs://jeremy-ifdavsb1-customer_complains \
+    --display_name="Customer complains agent" \
+    ./customer_complain
 ```
 
 > When the deploy script is finished, it will update the `.env` file with the new Agent Engine Resource Name (in the form): `GEMINI_ENT_AGENT_NAME=projects/<PROJECT_NUMBER>/locations/us-central1/reasoningEngines/6540449315872047104`
 
 5. Create a new `GeminiEntreprise` AI Application in the GCP console:
 
-![](imgs/img1.png)
 
 6. Update the `.env` file with the ID for the newly created GeminiEntreprise application (Note: the ID will displayed as you type the App name in the console):
 
@@ -85,10 +84,6 @@ GEMINI_ENT_APP_NAME=<YOUR_GEMINI_ENTREPRISE_APP_ID>
 8. Under the left-hand side panel, click on `Integration`, copy the link to your web app, and open it in a new tab.
 
 9. In GeminiEntreprise, under Agents => View All Agents, you will be able to see your latest agent:
-
-![](imgs/img6.png)
-
-![](imgs/img7.png)
 
 
 10. You can delete obsolete agents under the Agents menu in AI Application in the console. Otherwise, you combine the `list.sh` and/or `delete.sh` to clean up agents in your GeminiEntreprise
