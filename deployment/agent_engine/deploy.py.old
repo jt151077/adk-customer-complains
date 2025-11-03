@@ -51,11 +51,12 @@ remote_app = agent_engines.create(
     description="Agent to help with customer complains for a food delivery company",
     agent_engine=app,
     requirements=[
-        "google-adk",
-        "google-cloud-aiplatform[adk,agent-engines]",
-        "pillow",
-        "python-dotenv",
-        "toolbox-core",
+        "aiohttp>=3.13.2",
+        "google-adk>=1.17.0",
+        "google-cloud-aiplatform[adk,agent-engines]>=1.124.0",
+        "pillow>=12.0.0",
+        "python-dotenv>=1.2.1",
+        "toolbox-core>=0.5.0",
     ],
     extra_packages = [
         "./customer_complain",

@@ -16,7 +16,7 @@
 from google.adk.agents import Agent, SequentialAgent, LlmAgent
 from google.adk.tools.agent_tool import AgentTool
 from google.adk.tools.load_artifacts_tool import load_artifacts_tool
-from .tools import get_items_from_image, generate_voucher
+from .tools import get_items_from_image, generate_voucher, load_delivery_image
 from toolbox_core import ToolboxSyncClient
 
 toolbox = ToolboxSyncClient("https://toolbox-customer-complains-921470220241.us-central1.run.app/")
@@ -68,12 +68,12 @@ root_agent = Agent(
          *   **If** the tool returns a 'product_name' that does not match with the user complain, **then** respond to the user that the product was not ordered initially.
       3. Use `get_items_from_image` by passing it the order_id and the product_name to check whether the product was present on the picture of the package taken before delivery. The tool will answer with either 'yes' or 'no'.
          *   **If** the tool returns 'no', **then** go to the next step to generate a voucher for the user
-         *   **If** the tool returns a 'yes', **then** respond to the user that the product was present in the delivery. Show the image by from the following HTML code: <img src="https://storage.googleapis.com/customer-complains/'order_id'.png" />
+         *   **If** the tool returns a 'yes', **then** respond to the user that the product was present in the delivery. Retrieve the image using the `load_delivery_image` tool, by passing the `order_id`. Display the retrieved image based on the response. You can skip the rest of the steps below.
       4. You are now creating a voucher for the user. Generate a voucher_id as a string. Generate also a total_amount as a string which matches the product value. This total_amount should be in Swedish Krona (SEK).
       5. Use the tool `insert_voucher_agent` in order to create a voucher entry, by passing voucher_id, customer_id, order_id and the total_amount.
       6. Generate a nice image of the voucher with the tool `generate_voucher` with the voucher_id, the total_amount and a product picture, with the ICA logo.
       7. Display the voucher to the user as a proof.
       You should not rely on the previous history.
     """,
-    tools=[AgentTool(product_retrieval_agent), get_items_from_image, AgentTool(insert_voucher_agent), generate_voucher, load_artifacts_tool],
+    tools=[AgentTool(product_retrieval_agent), get_items_from_image, AgentTool(insert_voucher_agent), generate_voucher, load_delivery_image, load_artifacts_tool],
 )
