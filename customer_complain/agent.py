@@ -19,7 +19,7 @@ from google.adk.tools.load_artifacts_tool import load_artifacts_tool
 from .tools import get_items_from_image, generate_voucher, load_delivery_image
 from toolbox_core import ToolboxSyncClient
 
-toolbox = ToolboxSyncClient("https://toolbox-customer-complains-921470220241.us-central1.run.app/")
+toolbox = ToolboxSyncClient("https://toolbox-921470220241.us-central1.run.app")
 #toolbox = ToolboxSyncClient("http://127.0.0.1:5000")
 
 # Load all the tools
