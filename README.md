@@ -50,13 +50,7 @@ This will start a webserver running on http://127.0.0.1:8000. By pointing your w
 
 ```shell
 uv run customer_complain/test_local.py
-
-adk deploy agent_engine \
-    --project=jeremy-ifdavsb1 \
-    --region=us-central1 \
-    --staging_bucket=gs://jeremy-ifdavsb1-customer_complains \
-    --display_name="Customer complains agent" \
-    ./customer_complain
+uv run deployment/agent_engine/deploy.py
 ```
 
 > When the deploy script is finished, it will update the `.env` file with the new Agent Engine Resource Name (in the form): `GEMINI_ENT_AGENT_NAME=projects/<PROJECT_NUMBER>/locations/us-central1/reasoningEngines/6540449315872047104`
