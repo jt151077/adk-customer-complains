@@ -57,11 +57,12 @@ adk web
 This will start a webserver running on http://127.0.0.1:8000. By pointing your webbrowser to this address, you can test the code.
 
 
-6. You can also test the Agent from the command line and/or deploy it via the following commands:
+6. You can also test (locally and remotely) the Agent from the command line and/or deploy it via the following commands:
 
 ```shell
 uv run customer_complain/test_local.py
 uv run deployment/agent_engine/deploy.py
+uv run deployment/agent_engine/test_remote.py
 ```
 
 > When the deploy script is finished, it will update the `.env` file with the new Agent Engine Resource Name (in the form): `GEMINI_ENT_AGENT_NAME=projects/<PROJECT_NUMBER>/locations/us-central1/reasoningEngines/6540449315872047104`
