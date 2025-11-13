@@ -61,7 +61,7 @@ This will start a webserver running on http://127.0.0.1:8000. By pointing your w
 
 ```shell
 uv run customer_complain/test_local.py
-uv run deployment/agent_engine/deploy.py
+./deployment/agent_engine/deploy.sh
 uv run deployment/agent_engine/test_remote.py
 ```
 
