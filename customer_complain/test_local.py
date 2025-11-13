@@ -16,16 +16,9 @@ async def main():
     for event in app.stream_query(
         user_id="ysian",
         session_id=session.id,
-        message="1977",
+        message="I am missing an item in my delivery for order id ORD2025003, the product is Ketchup",
     ):
         print(event)
-    
-    
-    agent_context = '{"message":{"role":"user","parts":[{"text":"1977"}]},"events":[{"content":{"role":"user","parts":[{"text":"1977"}]},"author":"GeminiEntreprise_root_agent"},{"content":{"role":"model","parts":[{"functionCall":{"name":"GeminiEntrepriseak","args":{"question":"1977"},"id":"14076651604820872102"}}]},"author":"GeminiEntreprise_root_agent","id":"14076651604820872102"}]}'
-    
-    for response in app.streaming_agent_run_with_events(agent_context):
-        print(response)
-    
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -44,7 +44,7 @@ session = ae_app.create_session(user_id="ysian")
 for event in ae_app.stream_query(
     user_id="ysian",
     session_id=session["id"],
-    message="1977",
+    message="I am missing an item in my delivery for order id ORD2025003, the product is Ketchup",
 ):
     logger.info(event)
 
