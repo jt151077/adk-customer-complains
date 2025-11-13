@@ -5,20 +5,20 @@ Simple example of a custom Agent developed with ADK and published in GeminiEntre
 ## Pre-requisite
 
 1. This example is meant to work with `python >= 3.12`
-2. Install the `UV` Python package manager from https://github.com/astral-sh/uv
-3. Check out this repository somewhere where you have a terminal access `git clone git@github.com:jt151077/adk-gemini-ent.git`
+2. Make sure you have access to `UV` Python package manager in the command line. If not install from https://github.com/astral-sh/uv
+3. Check out this repository somewhere where you have a terminal access `git clone git@github.com:jt151077/adk-customer-complains.git`
 4. For this example you need a GCP Project, as the artifacts will be deployed in Agent Engine, and the GeminiEntreprise provisioned in AI Applications 
 
 
 ## Setup
 
-1. Make sure your GCP project is registered and supports GeminiEntreprise. To verfiy, you should have the possibility of creating an GeminiEntreprise AI Application in GCP
+1. If you want to use the Agent in Gemini Entreprise, make sure your GCP project is registered and supports GeminiEntreprise. To verfiy, you should have the possibility of creating an GeminiEntreprise AI Application in GCP
 
 
 
 ## Install
 
-1. CD to the root of the project `adk-gemini-ent`, provide the correct values in the `.env` file:
+1. CD to the root of the project `adk-customer-complains`, provide the correct values in the `.env` file:
 
 ```shell
 GOOGLE_GENAI_USE_VERTEXAI=TRUE
