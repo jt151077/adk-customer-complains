@@ -36,9 +36,10 @@ vertexai.init(
 
 logger.info("Listing app...")
 
-remote_app = agent_engines.list(filter=f'display_name="{os.getenv("AGENT_ENGINE_NAME")}"')
-
+remote_app = agent_engines.list(filter=f'display_name="{os.getenv("AGENT_ENGINE_NAME")+"-"+os.getenv("AGENT_VERSION")}"')
 ae_app = next(remote_app)
+
+logger.info(f"Found app: {ae_app.display_name}")
 session = ae_app.create_session(user_id="ysian")
 
 for event in ae_app.stream_query(
@@ -48,4 +49,3 @@ for event in ae_app.stream_query(
 ):
     logger.info(event)
 
-logging.debug(f"Remote app: {ae_app.display_name}")

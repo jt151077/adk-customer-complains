@@ -16,6 +16,7 @@ gcloud services enable \
     cloudbuild.googleapis.com \
     artifactregistry.googleapis.com \
     iam.googleapis.com \
+    telemetry.googleapis.com \
     secretmanager.googleapis.com || { echo "Failed to enable services. Exiting."; exit 1; }
 
 echo "--- Checking for existing service account: ${SERVICE_ACCOUNT_EMAIL} ---"

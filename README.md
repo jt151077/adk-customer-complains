@@ -25,6 +25,8 @@ Simple example of a custom Agent developed with ADK and published in GeminiEntre
 GOOGLE_GENAI_USE_VERTEXAI=TRUE
 GOOGLE_CLOUD_PROJECT=<YOUR_GCP_PROJECT_ID>
 GOOGLE_CLOUD_LOCATION=<YOUR_GCP_REGION>
+AGENT_VERSION=x.x.x
+GEMINI_ENT_REGION=global
 AGENT_ENGINE_NAME='<THE_AGENT_NAME>' ## this will be the name visible in Agent Engine
 GEMINI_ENT_DISPLAY_NAME='<THE_AGENT_NAME>' ## this will be the agent name in Agent Space
 GEMINI_ENT_AGENT_DESCRIPTION='<THE_AGENT_DESCRIPTION>' ## this will be the agent description in Agent Space

@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS customer_complains.Vouchers (
 
 
 INSERT INTO customer_complains.Vouchers (voucher_id, customer_id, order_id, total_amount) VALUES
-('ORD2025001_VOUCHER_GURKA', 'CUST001', 'ORD2025001' , '50.00');
+('ORD2025001_VOUCHER', 'CUST001', 'ORD2025001' , '50.00');
 
 INSERT INTO customer_complains.Customers (customer_id, first_name, last_name, email, phone_number, address, city, postal_code, country, registration_date, loyalty_status) VALUES
 ('CUST001', 'Lars', 'Svensson', 'lars.svensson@example.com', '070-1234567', 'Storgatan 1', 'Stockholm', '111 22', 'Sverige', '2023-01-15 10:00:00 UTC', 'GOLD'),
@@ -97,16 +97,16 @@ INSERT INTO customer_complains.Customers (customer_id, first_name, last_name, em
 ('CUST005', 'Per', 'Olsson', 'per.olsson@example.com', '070-5678901', 'Ågatan 3', 'Linköping', '582 22', 'Sverige', '2023-05-12 16:45:00 UTC', 'GOLD');
 
 INSERT INTO customer_complains.Products (product_id, product_name, description, category, unit_price, sku, in_stock) VALUES
-('PROD001', 'ICA Basic Mjölk', 'Standard mjölk, 1 liter', ' mejeri', 12.50, 'SKU1001', TRUE),
-('PROD002', 'ICA Kaffe', 'Mellanrost kaffe, 500g', 'kaffe', 45.00, 'SKU1002', TRUE),
-('PROD003', 'Gurka', 'Färsk gurka, styck', 'frukt & grönt', 10.00, 'SKU1003', TRUE),
-('PROD004', 'Kycklingfilé', 'Färsk kycklingfilé, kg', 'kött', 89.00, 'SKU1004', TRUE),
-('PROD005', 'ICA Toalettpapper', '24-pack', 'hem', 65.00, 'SKU1005', FALSE),
-('PROD006', 'Pågen Lingongrova', 'Bröd', 'bageri', 22.90, 'SKU1006', TRUE),
-('PROD007', 'Bananer Eko', 'Ekologiska bananer, kg', 'frukt & grönt', 25.00, 'SKU1007', TRUE),
-('PROD008', 'ICA Ägg Frigående', '12-pack', 'mejeri', 30.00, 'SKU1008', TRUE),
-('PROD009', 'Felix Ketchup', 'Tomatketchup', 'skafferi', 18.50, 'SKU1009', TRUE),
-('PROD010', 'Arla Smör', 'Normalsaltat 500g', 'mejeri', 42.00, 'SKU1010', TRUE);
+('PROD001', 'Milk', 'Bottle of milk, 1 liter', 'dairy', 12.50, 'SKU1001', TRUE),
+('PROD002', 'Coffee', 'Roast, 500g', 'coffee', 45.00, 'SKU1002', TRUE),
+('PROD003', 'Cucumber', 'Fresh cucumber, 1 piece', 'fruit & vegetable', 10.00, 'SKU1003', TRUE),
+('PROD004', 'Chicken filet', 'Fresh chicken fillet, kg', 'meat', 89.00, 'SKU1004', TRUE),
+('PROD005', 'Toiletpaper', '24-pack', 'home', 65.00, 'SKU1005', FALSE),
+('PROD006', 'Sliced bread', 'Bread', 'bakery', 22.90, 'SKU1006', TRUE),
+('PROD007', 'Bananer', 'Ecologic bananer, kg', 'fruit & vegetable', 25.00, 'SKU1007', TRUE),
+('PROD008', 'Eggs', '12-pack', 'dairy', 30.00, 'SKU1008', TRUE),
+('PROD009', 'Ketchup', 'Tomatoketchup, 500g', 'side', 18.50, 'SKU1009', TRUE),
+('PROD010', 'Butter', '500g', 'dairy', 42.00, 'SKU1010', TRUE);
 
 INSERT INTO customer_complains.Orders (order_id, customer_id, order_date, order_status, total_amount, shipping_address, expected_delivery_date, actual_delivery_date, delivery_partner, tracking_number) VALUES
 ('ORD2025001', 'CUST001', '2025-10-20 08:15:00 UTC', 'DELIVERED', 250.50, 'Storgatan 1, Stockholm', '2025-10-21', '2025-10-21 14:30:00 UTC', 'PostNord', 'PN123456SE'),

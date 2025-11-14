@@ -5,16 +5,18 @@ GEMINI_ENT_APP_NAME=$(grep '^GEMINI_ENT_APP_NAME=' .env | cut -d '=' -f 2-)
 GEMINI_ENT_DISPLAY_NAME=$(grep '^GEMINI_ENT_DISPLAY_NAME=' .env | cut -d '=' -f 2-)
 GEMINI_ENT_AGENT_DESCRIPTION=$(grep '^GEMINI_ENT_AGENT_DESCRIPTION=' .env | cut -d '=' -f 2-)
 AGENT_ENGINE_RESOURCE_NAME=$(grep '^AGENT_ENGINE_RESOURCE_NAME=' .env | cut -d '=' -f 2-)
+GEMINI_ENT_REGION=$(grep '^GEMINI_ENT_REGION=' .env | cut -d '=' -f 2-)
+AGENT_VERSION=$(grep '^AGENT_VERSION=' .env | cut -d '=' -f 2-)
 
 
 http_response=$(curl -X POST \
 -H "Authorization: Bearer $(gcloud auth print-access-token)" \
 -H "Content-Type: application/json" \
 -H "X-Goog-User-Project: ${GOOGLE_CLOUD_PROJECT}" \
-"https://discoveryengine.googleapis.com/v1alpha/projects/${GOOGLE_CLOUD_PROJECT}/locations/global/collections/default_collection/engines/${GEMINI_ENT_APP_NAME}/assistants/default_assistant/agents" \
+"https://discoveryengine.googleapis.com/v1alpha/projects/${GOOGLE_CLOUD_PROJECT}/locations/${GEMINI_ENT_REGION}/collections/default_collection/engines/${GEMINI_ENT_APP_NAME}/assistants/default_assistant/agents" \
 -d @- <<EOF
 {
-  "displayName": ${GEMINI_ENT_DISPLAY_NAME},
+  "displayName": "$(echo "$GEMINI_ENT_DISPLAY_NAME" | sed "s/^'\|'$//g")-${AGENT_VERSION}",
   "description": ${GEMINI_ENT_AGENT_DESCRIPTION},
   "adk_agent_definition": {
     "tool_settings": {

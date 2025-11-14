@@ -4,13 +4,15 @@ GOOGLE_CLOUD_PROJECT=$(grep '^GOOGLE_CLOUD_PROJECT=' .env | cut -d '=' -f 2-)
 AGENT_ENGINE_NAME=$(grep '^AGENT_ENGINE_NAME=' .env | cut -d '=' -f 2-)
 GOOGLE_CLOUD_LOCATION=$(grep '^GOOGLE_CLOUD_LOCATION=' .env | cut -d '=' -f 2-)
 GEMINI_ENT_DISPLAY_NAME=$(grep '^GEMINI_ENT_DISPLAY_NAME=' .env | cut -d '=' -f 2-)
+AGENT_VERSION=$(grep '^AGENT_VERSION=' .env | cut -d '=' -f 2-)
+
 
 
 deploy_resp=$(adk deploy agent_engine \
   --project=${GOOGLE_CLOUD_PROJECT} \
   --region=${GOOGLE_CLOUD_LOCATION} \
-  --staging_bucket=gs://${GOOGLE_CLOUD_PROJECT}-${AGENT_ENGINE_NAME} \
-  --display_name="${AGENT_ENGINE_NAME}" \
+  --staging_bucket=gs://${GOOGLE_CLOUD_PROJECT}-${AGENT_ENGINE_NAME}-${AGENT_VERSION} \
+  --display_name="${AGENT_ENGINE_NAME}-${AGENT_VERSION}" \
   ./customer_complain)
 
 echo "------------- AGENT DEPLOYED SUCCESSFULLY -----------------"
