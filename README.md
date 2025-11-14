@@ -58,6 +58,8 @@ adk web
 
 This will start a webserver running on http://127.0.0.1:8000. By pointing your webbrowser to this address, you can test the code.
 
+As an example, you can mention the order id 'ORD2025003' and the product 'milk' or 'ketchup'. This should show you that these were on the delivered box. However, if you try product 'cucumber', it will issue you a voucher
+
 
 6. You can also test (locally and remotely) the Agent from the command line and/or deploy it via the following commands:
 
