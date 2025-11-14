@@ -7,7 +7,8 @@ Simple example of a custom Agent developed with ADK and published in GeminiEntre
 1. This example is meant to work with `python >= 3.12`
 2. Make sure you have access to `UV` Python package manager in the command line. If not install from https://github.com/astral-sh/uv
 3. Check out this repository somewhere where you have a terminal access `git clone git@github.com:jt151077/adk-customer-complains.git`
-4. For this example you need a GCP Project, as the artifacts will be deployed in Agent Engine, and the GeminiEntreprise provisioned in AI Applications 
+4. For this example you need a GCP Project, as the artifacts will be deployed in Agent Engine, and the GeminiEntreprise provisioned in AI Applications
+5. The MCP Toolbox Server deployed in the example, uses Cloud Run (unauthenticated, for simplicity). Your project will have allow public IP access, which could potentially be restricted by the org policy 'Domain restricted sharing'
 
 
 ## Setup
