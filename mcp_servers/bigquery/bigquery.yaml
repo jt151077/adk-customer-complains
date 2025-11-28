@@ -1,7 +1,7 @@
 sources:
   my-bq-source:
     kind: bigquery
-    project: jeremy-ifdavsb1
+    project: ${GOOGLE_CLOUD_PROJECT}
 
 tools:
   product_retrieval_bq:
@@ -23,11 +23,11 @@ tools:
         p.product_name, 
         p.product_id    
       FROM 
-        `jeremy-ifdavsb1`.`customer_complains`.`Orders` AS o
+        `customer_complains.Orders` AS o
       LEFT JOIN 
-        `jeremy-ifdavsb1`.`customer_complains`.`Order_Items` AS oi ON o.order_id = oi.order_id
+        `customer_complains.Order_Items` AS oi ON o.order_id = oi.order_id
       LEFT JOIN 
-        `jeremy-ifdavsb1`.`customer_complains`.`Products` AS p ON oi.product_id = p.product_id
+        `customer_complains.Products` AS p ON oi.product_id = p.product_id
       WHERE o.order_id = @order_id AND lower(p.product_name) LIKE lower(concat('%', @product_name, '%'));
     source: my-bq-source
     
@@ -49,7 +49,7 @@ tools:
        type: string
        description: The value of the voucher.
     statement: |
-      INSERT INTO `jeremy-ifdavsb1`.`customer_complains`.`Vouchers` (voucher_id, customer_id, order_id, total_amount) VALUES (@voucher_id, @customer_id , @order_id , @total_amount);
+      INSERT INTO `customer_complains.Vouchers` (voucher_id, customer_id, order_id, total_amount) VALUES (@voucher_id, @customer_id , @order_id , @total_amount);
     source: my-bq-source
 
 
