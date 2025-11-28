@@ -67,6 +67,7 @@ gcloud run deploy "${CLOUD_RUN_SERVICE_NAME}" \
     --set-secrets="/app/bigquery.yaml=${SECRET_NAME}:latest" \
     --args="--tools-file=/app/bigquery.yaml","--address=0.0.0.0","--port=8080" \
     --allow-unauthenticated \
+    --set-env-vars="GOOGLE_CLOUD_PROJECT=${GOOGLE_CLOUD_PROJECT}" \
     --project="${GOOGLE_CLOUD_PROJECT}" || { echo "Failed to deploy Cloud Run service. Exiting."; exit 1; }
 
 echo "--- Deployment script finished successfully! ---"
