@@ -35,7 +35,7 @@ async def generate_voucher(tool_context: ToolContext, voucher_id: str, total_amo
 
         response = client.models.generate_images(
             model='imagen-4.0-generate-001',
-            prompt=f"Generate a single image which represents the voucher for the user. The voucher should include the following information: Voucher ID {voucher_id}, Voucher Amount {total_amount}, in the ICA supermarket style in Sweden",
+            prompt=f"Generate a single image which represents the voucher for the user. The voucher should include the following information: Voucher ID {voucher_id}, Voucher Amount {total_amount}, with no specific branding. Keep this as white labelled as possible.",
             config=types.GenerateImagesConfig(
                 number_of_images=1,
                 include_rai_reason=True,
